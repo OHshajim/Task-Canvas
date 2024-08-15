@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { ResizableBox } from "react-resizable";
 import Modal from "react-modal";
-import { Arrow } from "react-arrow";
 import Card from "./Card";
 
 let Cards = [

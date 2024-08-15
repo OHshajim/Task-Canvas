@@ -12,3 +12,9 @@ Technologies :
 1. ReactJS
 2. Tailwind CSS
 3. react-modal
+
+to instal locally :
+
+```bash
+npm i react-modal
+```
