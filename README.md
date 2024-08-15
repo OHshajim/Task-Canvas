@@ -1,8 +1,14 @@
-# React + Vite
+# Job Task - Canvas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+features :
 
-Currently, two official plugins are available:
+1. Cards are Resizable .
+2. User can add Cards .
+3. show and add cards by modals .
+4. Page is Scrollable .
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Technologies :
+
+1. ReactJS
+2. Tailwind CSS
+3. react-modal
