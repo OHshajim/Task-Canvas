@@ -89,15 +89,14 @@ const Canvas = () => {
 
   return (
     <div className="w-full h-screen overflow-auto relative ">
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5">
-        {cards.map((card) => (
-          <Card
-            key={card.id}
-            text={card.text}
-            openModal={() => openModal(card)}
-          />
-        ))}
-      </div>
+      {cards.map((card) => (
+        <Card
+          key={card.id}
+          text={card.text}
+          openModal={() => openModal(card)}
+        />
+      ))}
+
       {/* Add Card */}
       <Modal
         isOpen={cardAdd}
@@ -131,7 +130,10 @@ const Canvas = () => {
           <h2 className="text-lg font-semibold mb-4">Card Details</h2>
           <p>{selectedCard?.text}</p>
           <div className="flex justify-end">
-            <button onClick={closeModal} className="mt-4 px-4 py-2 bg-red-500 text-white rounded shadow">
+            <button
+              onClick={closeModal}
+              className="mt-4 px-4 py-2 bg-red-500 text-white rounded shadow"
+            >
               Close
             </button>
           </div>
@@ -141,7 +143,9 @@ const Canvas = () => {
       {/* Add Button */}
       <div className=" fixed bottom-0 right-10">
         <button
-          onClick={()=>{setCardAdd(true)}}
+          onClick={() => {
+            setCardAdd(true);
+          }}
           className="m-4 px-4 py-2 bg-blue-500 text-white rounded-full shadow"
         >
           Add Card
