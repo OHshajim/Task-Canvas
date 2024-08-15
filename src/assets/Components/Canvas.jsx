@@ -58,12 +58,16 @@ const Canvas = () => {
   const [selectedCard, setSelectedCard] = useState(null);
   const [cardAdd, setCardAdd] = useState(false);
 
-  const addCard = () => {
-    setCardAdd(true);
-    setCards([
-      ...cards,
-      { id: cards.length, text: "Dummy Text for the Card", x: 50, y: 50 },
-    ]);
+  const handleAddCard = (e) => {
+    e.preventDefault();
+    const text = e.target.text.value;
+    console.log(text);
+    addCard(text);
+  };
+
+  const addCard = (text) => {
+    setCards([...cards, { id: cards.length + 1, text: text, x: 50, y: 50 }]);
+    setCardAdd(false);
   };
 
   const handleDrag = (e, index) => {
@@ -87,41 +91,47 @@ const Canvas = () => {
     <div className="w-full h-screen overflow-auto relative ">
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5">
         {cards.map((card) => (
-          <Card text={card.text} openModal={() => openModal(card)} />
+          <Card
+            key={card.id}
+            text={card.text}
+            openModal={() => openModal(card)}
+          />
         ))}
       </div>
       {/* Add Card */}
       <Modal
         isOpen={cardAdd}
-        onRequestClose={closeModal}
         className="flex items-center justify-center h-full"
       >
         <div className="bg-white p-6 rounded shadow-lg max-w-lg mx-auto">
-          <h2 className="text-xl font-bold mb-4">Card Details</h2>
-          <p>{selectedCard?.text}</p>
-          <button
-            onClick={closeModal}
-            className="mt-4 px-4 py-2 bg-red-500 text-white rounded shadow"
-          >
-            Save
-          </button>
+          <h2 className="text-xl font-bold mb-4">Add Card</h2>
+          <form onSubmit={handleAddCard}>
+            <input
+              type="text"
+              name="text"
+              placeholder="Add text"
+              required
+              className="w-full px-3 py-2 border-zinc-300 border rounded-lg"
+            />
+            <div className="flex justify-end">
+              <button className="mt-4 px-4 py-2 bg-green-500 text-white rounded shadow">
+                Add
+              </button>
+            </div>
+          </form>
         </div>
       </Modal>
 
       {/* Card Detail */}
       <Modal
         isOpen={showModal}
-        onRequestClose={closeModal}
         className="flex items-center justify-center h-full"
       >
         <div className="bg-white p-6 rounded shadow-lg max-w-lg mx-auto">
           <h2 className="text-lg font-semibold mb-4">Card Details</h2>
           <p>{selectedCard?.text}</p>
           <div className="flex justify-end">
-            <button
-              onClick={closeModal}
-              className="mt-4 px-4 py-2 bg-red-500 text-white rounded shadow"
-            >
+            <button onClick={closeModal} className="mt-4 px-4 py-2 bg-red-500 text-white rounded shadow">
               Close
             </button>
           </div>
@@ -131,7 +141,7 @@ const Canvas = () => {
       {/* Add Button */}
       <div className=" fixed bottom-0 right-10">
         <button
-          onClick={addCard}
+          onClick={()=>{setCardAdd(true)}}
           className="m-4 px-4 py-2 bg-blue-500 text-white rounded-full shadow"
         >
           Add Card
